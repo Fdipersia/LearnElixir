@@ -1,4 +1,4 @@
-# =============================  EPISODE 1 // Intro =============================
+# EPISODE 1 // Intro 
   
 * Elixir runs on beam => Virtual Machine
 * Relieable, concurrent, distributed
@@ -8,7 +8,7 @@
 * Zero downtime: No need to restart or disconnect clients after deploy
 * Whatsapp uses BEAM
 
-# =============================  EPISODE 2 // Data Types =============================
+# EPISODE 2 // Data Types 
 
 2 Kinds of types: Base Types & High Level Types
 
@@ -74,7 +74,7 @@
   ### Structs
   %{__struct__: ModuleName, ...}
 
-# =============================  EPISODE 3 // Operators =============================
+# EPISODE 3 // Operators 
 
 ## Match operator "="
 
@@ -154,7 +154,7 @@ var = var
 
 Which translates to var = bar(foo(var))
 
-# =============================  EPISODE 4 // Functions, Modules & Structs  =============================
+# EPISODE 4 // Functions, Modules & Structs  
 
 ## Anonymous Functions
 * Anonymous because they derive they name from the variable they are bound to.
@@ -278,7 +278,7 @@ end
 
 %User{name: "Daniel"}
 
-# =============================  EPISODE 5 // Control Flow  =============================
+# EPISODE 5 // Control Flow  
   
 ## cond
 * returns the first matching condition
@@ -320,7 +320,7 @@ end
 def blank?(value) when value in [nil, "", false], do: true
 def blank?(_other), do: false
 
-# =============================  EPISODE 6 // Recursion  =============================
+# EPISODE 6 // Recursion  
 
 * Elixir does not have loops
 * Loops require variable mutations
@@ -335,7 +335,7 @@ def blank?(_other), do: false
 * *Last thing* a function does is call it self
 * There is only one function in the stack, avoiding stackoverflow (when too many functions are stacked and memory collapses)
 
-# =============================  EPISODE 7 // Enum & Stream  =============================
+# EPISODE 7 // Enum & Stream  
 
 ## Enum
 * Enumerable
@@ -433,7 +433,7 @@ months = ~w(January February March April June July August September October Nove
 Stream.cycle(months)
   |>  Enum.take(24)
 
-# =============================  EPISODE 8 // Comprehensions  =============================
+# EPISODE 8 // Comprehensions  
 
 ## for macro
 
@@ -525,7 +525,7 @@ upcased_names => ["TOM","SAM"]
 3. Generating a list: for || Stream generator
 4. Multiple lists: for
 
-# =============================  EPISODE 9 // Sigils  =============================
+# EPISODE 9 // Sigils  
 
 * Sigils are a way to create a shorthand.
 
@@ -558,7 +558,7 @@ end
 import MyModule, only:  [sigil_u: 2]
 ~u(some string to upcase) => ["SOME", "STRING", "TO", "UPCASE"]
 
-# =============================  EPISODE 10 // Mix  =============================
+# EPISODE 10 // Mix  
 
 * Mix is Elixir's build tool
 * Combines many tools, such as tasks
@@ -584,7 +584,7 @@ end
 
 Recompile the project with `recompile()`
 
-# =============================  EPISODE 11 // Hex  =============================
+# EPISODE 11 // Hex  
 
 * Hex is a package manager for the Erlang ecosystem.
 * Similar to Ruby gems or npm packages
@@ -600,7 +600,7 @@ List of awesome Elixir packages: https://github.com/h4cc/awesome-elixir
 * Configuring dependencies => in the `config/config.exs`
   config :package_name, setting_a: 'val1', setting_b: 'val2'
 
-# =============================  EPISODE 12 // ExUnit  =============================
+# EPISODE 12 // ExUnit  
 
 * ExUnit is Elixir test suite
 * `ExUnit.start()` must be called from the test_helper file
@@ -630,7 +630,7 @@ refute false == true
 * Every public function should be tested
 * Prefer docTest to keep docs updated
 
-# =============================  EPISODE 13 // Processes  =============================
+# EPISODE 13 // Processes  
 
 * To spawn a new process => to create a new process
 * To spawn a new process usse the `spawn fn`
@@ -670,7 +670,7 @@ receive accepts pattern matching, must have a default case to process every mess
 * It can send a message with `Process.flag(:trap_exit, true)
 It will process the flag and decide to die or not to die
 
-# =============================  EPISODE 14 // GenServer  =============================
+# EPISODE 14 // GenServer  
 
 * OTP => Open Telecom Platform
 * Earlang framework for building distributed systems (not only telecomunications)

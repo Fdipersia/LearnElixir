@@ -1,21 +1,11 @@
-# Learn
+# Learning Elixir
 
-**TODO: Add description**
+## Description
 
-## Installation
+A repo for taking notes and applying concepts learned.
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `learn` to your list of dependencies in `mix.exs`:
+## Resources
 
-```elixir
-def deps do
-  [
-    {:learn, "~> 0.1.0"}
-  ]
-end
-```
+Begin with video guides
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/learn>.
-
+* https://www.learnelixir.tv/
