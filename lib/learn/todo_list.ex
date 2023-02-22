@@ -10,6 +10,10 @@ defmodule Learn.TodoList do
     todos
   end
 
+  def start_link(state) do
+    GenServer.start_link(__MODULE__, state, name: __MODULE__)
+  end
+
   def handle_cast({:add, todo}, list) do
     {:noreply, [todo|list]}
   end
@@ -22,8 +26,16 @@ defmodule Learn.TodoList do
     {:reply, fetch, fetch}
   end
 
+  def handle_call(:pop, _from, [head | tail]) do
+    {:reply, head, tail}
+  end
+
   def add(list, todo) do
     GenServer.cast(list, {:add, todo})
+  end
+
+  def pop(list) do
+    GenServer.call(list, :pop)
   end
 
   def remove(list, todo) do
@@ -32,5 +44,9 @@ defmodule Learn.TodoList do
 
   def fetch_list(list) do
     GenServer.call(list, :fetch)
+  end
+
+  def handle_info(:kill_me_pls, state) do
+    {:stop, :normal, state}
   end
 end
