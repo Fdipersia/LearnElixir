@@ -713,3 +713,41 @@ end
 ## Supervisors
 * Methods to restart the crashed processes
 * Supervisors are processes that watch other processes and restart them if they fail
+
+# EPISODE 16 // Applications
+
+* OTP is a process oriented programming framework integral to Earlang and Elixir
+* Every MIX project is an OTP app
+* Buzzword compliant
+* Acts like microservices
+* Modules can be run from different machines, without communicating through jsons
+
+* :observer.start 
+
+# EPISODE 17 // Task & Agent
+
+* These are two modules that help with processes
+
+## Task
+* Asynchronous Processing
+
+```
+  task = Task.async fn ->
+    IO.puts "I'm in a different process"
+  end
+
+  task = Task.async(IO, :puts, ["I'm in a diferent process"])
+
+  result = Task.await(task)
+```
+
+## Agent
+* Storage
+
+Acts like a GenServer
+
+```
+  {:ok, agent} = Agent.start_link(fn -> 0 end)
+  Agent.update(agent, fn(state) -> state + 1 end)
+  Agent.get(agent, fn(state) -> state end)
+```
