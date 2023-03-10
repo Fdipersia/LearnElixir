@@ -751,3 +751,18 @@ Acts like a GenServer
   Agent.update(agent, fn(state) -> state + 1 end)
   Agent.get(agent, fn(state) -> state end)
 ```
+
+# EPISODE 18 // Nodes
+* A node is an instance of the BEAM machine
+* Start a node => `iex --sname node_name`
+* You can send messages from a node to another
+* `Node.self` => returns Node name
+* First connect the two nodes `Node.connect(:other_node@computer)
+* `Node.list`
+
+* To connect nodes from different computers start them with the same cookie `iex --sname node_name --cokie secret`
+
+# EPISODE 19 // Protocols
+* Elixir does not allow monkey patching nor Inheritance
+* Enter Protocols, Protocols allows a Library or Module to be more flexible when it comes to input.
+* Protocols must be specified when developing the Library, do not forget to add docs so users can implement them.
