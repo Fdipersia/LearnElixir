@@ -1,10 +1,12 @@
 defmodule Learn.TodoList do
   use GenServer
 
+  @spec init([String.t]) :: {:ok, [String.t]}
   def init(init_arg) do
     {:ok, init_arg}
   end
 
+  @spec start([String.t]) :: pid
   def start(list) do
     {:ok, todos} = GenServer.start(__MODULE__, list)
     todos

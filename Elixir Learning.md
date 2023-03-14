@@ -766,3 +766,122 @@ Acts like a GenServer
 * Elixir does not allow monkey patching nor Inheritance
 * Enter Protocols, Protocols allows a Library or Module to be more flexible when it comes to input.
 * Protocols must be specified when developing the Library, do not forget to add docs so users can implement them.
+* Data based
+
+# EPISODE 20 // Behaviours
+* Behaviour is Elixir's implementation of an Interface
+* Models based
+
+# EPISODE 21 // Exceptions
+* Not for control flow
+* Only when something really wrong happens
+* You should return an error tuple rather than exception
+
+`raise ArgumentError, "You provided bad arguments"`
+
+## Catching exceptions
+* You should not catch exceptions
+* Exceptions should never occur
+
+```
+  try do
+    something_that_might_fail
+  rescue
+    exception in [ArgumentError] ->
+     IO.puts inspect(exception)
+  end
+```
+
+```
+  defmodule MyCustomException do
+    defexception code: nil,
+                 message: nil
+
+    def exception(value) do
+      msg = "A custom exception as raised because of: #{value}"
+      %__MODULE__{message: msg}
+    end
+  end
+
+  raise MyCustomException, value
+```
+
+# EPISODE 22 // Macros
+* Macros allows you to write beautiful code that is good
+* Macros transform code at compile time
+* Prefer Data > Functions > Macros
+* Solve problems with good data formats, modify it with functions if required, modify them with macros if needed.
+
+* Define good data structures
+* Write functional solutions
+* If necessary pretty them up with Macros
+
+Create the Opposite:
+## Purely functional
+```
+  defmodule Math.Opposite do
+    def opposite(:+, [a, b]) do
+      a - b
+    end
+  end
+
+  import Math.Opposite
+
+  opossite(:+ [1 , 1])
+```
+
+## Defining a Macro
+
+```
+  defmodule Math.Opposite do
+    defmacro opposite({:+, context, [a, b]}) do
+      {:-, context, [a, b]}
+    end
+  end
+```
+## Macro with Quote helper
+* Qoute helper returns an AST
+```
+  defmodule Math.Opposite do
+    defmacro opposite({:+, _, [a, b]}) do
+      quote do
+        unquote(a) - unquote(b)
+      end
+    end
+  end
+```
+
+* `unless` is a macro that expands to `if !condition do expretion end`
+* `if` is a macro that expands to
+```
+  case condition do
+    x when x in [false, nil] -> nil
+    _ -> expr
+  end
+```
+
+# EPISODE 23 // Binary
+* Bit => 0 or 1
+* Byte => 00000000 => 0
+* Byte => 00000001 => 1
+
+# EPISODE 24 // GenEvent
+* GenEvent is a behaviour module for implementing event handling functionality
+
+# EPISODE 25 // Dializer
+* Static Typing: is when you specify the arguments with data types and would fail at compile type if wrong data type is passed
+* Elixir doesn't have Static Typing
+* Elixir has Dializer which will check types
+* Pattern matching prevents errors at runtime
+* Dializer gives warnings before runtime, doesn't prevent compilation
+## Spec Annotations
+* Are optionals
+* In order to Dializer understand your code you must add `@sepc` to your functions.
+```
+  @spec my_function(map) :: integer
+  @spec my_function(args) :: return_value
+  def my_function(%{pattern: match}) -> hanlde end
+```
+
+`@spec` is a module Attribute
+
