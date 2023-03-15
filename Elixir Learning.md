@@ -885,3 +885,44 @@ Create the Opposite:
 
 `@spec` is a module Attribute
 
+# EPISODE 26 // Deployment to self-managed hardware
+* ExRM => Elixir release manager
+* Hot Code Upgrading
+
+# EPISODE 27 // Observer
+* `:observer.start` inside `iex -S mix`
+
+# EPISODE 28 // With Macro
+* The `with` macro is kind of a more advanced pipeline operator
+
+The following function would run as expected unless there is an error, for example if send api is down
+```
+  data
+  |> encode
+  |> send
+  |> parse_response
+```
+
+* `with` allows us to patern match on the return values on each of the functions of the pipeline
+* only if the pattern matches the next clause will be executed
+* use `else` to handle errors
+
+```
+  with {:ok, data} <- encode(data),
+       {:ok, resp} <- send(data),
+       {:ok, decoded} <- parse_response(resp) do
+    decoded
+  else
+    {:error, invalid_data} -> #recover from invalid data
+  end
+```
+
+# EPISODE 29 // Registry
+* It is a "local descentralized and scalable, key-value process storage"
+* It is not distributed, it is not shared into multiple processes
+```
+  {:ok, _pid} = Registry.start_link(:unique, MyApp.Registry)
+  # Registers the current Process ID with the registry, with key value pairs
+  Registry.register(MyApp.Registry, "Hello", "World")
+  # You can use the latter key to lookup the PID
+  Registry.lookup(MyApp.Registry, "Hello") # => [{#Pid<>, "world"}]
